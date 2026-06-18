@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-ssr
+output
+.playwright-cli
+*.tsbuildinfo
+*.local
+.DS_Store
+.vscode
+.idea
+*.log

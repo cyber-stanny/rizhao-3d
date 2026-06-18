@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system,
+    sans-serif;
+  background: #0a1f3d;
+  color: #eaf4ff;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.glass-panel {
+  background: rgba(10, 31, 61, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(127, 201, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.glass-btn {
+  background: rgba(10, 47, 84, 0.6);
+  border: 1px solid rgba(127, 201, 255, 0.25);
+  transition: all 0.2s ease;
+}
+.glass-btn:hover {
+  background: rgba(26, 134, 216, 0.4);
+  border-color: rgba(127, 201, 255, 0.6);
+  box-shadow: 0 0 12px rgba(63, 168, 240, 0.4);
+}
+.glass-btn.active {
+  background: rgba(26, 134, 216, 0.55);
+  border-color: rgba(127, 201, 255, 0.8);
+  box-shadow: 0 0 16px rgba(63, 168, 240, 0.6);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(127, 201, 255, 0.3);
+  border-radius: 3px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+canvas {
+  display: block;
+  touch-action: none;
+}
+
+.landmark-label {
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
