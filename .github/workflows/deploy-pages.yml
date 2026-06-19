@@ -32,9 +32,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
-        env:
-          GITHUB_PAGES: "true"
+        run: npm run build -- --base=/rizhao-3d/
 
       - name: Add SPA fallback
         run: cp dist/index.html dist/404.html
