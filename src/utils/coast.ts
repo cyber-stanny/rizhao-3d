@@ -6,7 +6,16 @@ type CoastBoundary = {
   minXByZ: Map<number, number>;
 };
 
+const ROAD_WIDTH: Record<string, number> = {
+  motorway: 7.2,
+  trunk: 6.2,
+  primary: 5.2,
+  secondary: 3.7,
+  tertiary: 2.4,
+};
+
 let cachedBoundary: CoastBoundary | null = null;
+const cachedLandRoads = new Map<number, SceneRoad[]>();
 
 export function getCoastBoundary(): CoastBoundary {
   if (cachedBoundary) return cachedBoundary;
@@ -102,7 +111,32 @@ export function splitRoadOnLand(road: SceneRoad, margin = 0.8): SceneRoad[] {
 }
 
 export function getLandRoads(minPoints = 2, margin = 0.8): SceneRoad[] {
-  return sceneData.roads
-    .flatMap((road) => splitRoadOnLand(road, margin))
-    .filter((road) => road.points.length >= minPoints);
+  const cached = cachedLandRoads.get(margin);
+  const roads =
+    cached ??
+    sceneData.roads.flatMap((road) => splitRoadOnLand(road, margin));
+  if (!cached) cachedLandRoads.set(margin, roads);
+  return roads.filter((road) => road.points.length >= minPoints);
+}
+
+function distanceToSegment(x: number, z: number, a: ScenePoint, b: ScenePoint): number {
+  const dx = b.x - a.x;
+  const dz = b.z - a.z;
+  const lenSq = dx * dx + dz * dz;
+  if (lenSq < 0.0001) return Math.hypot(x - a.x, z - a.z);
+  const t = Math.max(0, Math.min(1, ((x - a.x) * dx + (z - a.z) * dz) / lenSq));
+  return Math.hypot(x - (a.x + dx * t), z - (a.z + dz * t));
+}
+
+export function isNearLandRoad(x: number, z: number, extraClearance = 1): boolean {
+  return getLandRoads(2, 0.4).some((road) => {
+    const width = ROAD_WIDTH[road.type] ?? ROAD_WIDTH.tertiary;
+    const clearance = width / 2 + extraClearance;
+    for (let i = 1; i < road.points.length; i += 1) {
+      if (distanceToSegment(x, z, road.points[i - 1], road.points[i]) < clearance) {
+        return true;
+      }
+    }
+    return false;
+  });
 }

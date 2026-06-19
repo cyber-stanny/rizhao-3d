@@ -5,7 +5,7 @@ import { cityConfig } from "../data/cityConfig";
 import { sceneData } from "../data/sceneData";
 import { createRandom } from "../utils/random";
 import { clamp } from "../utils/math";
-import { isOnLand } from "../utils/coast";
+import { isNearLandRoad, isOnLand } from "../utils/coast";
 
 type Props = {
   isNight: boolean;
@@ -42,6 +42,9 @@ function buildInstances(): BuildingInstance[] {
     });
     const sizeX = clamp(maxX - minX, 0.6, 14);
     const sizeZ = clamp(maxZ - minZ, 0.6, 14);
+    const clearance = Math.max(sizeX, sizeZ) * 0.55 + 1.4;
+    if (isNearLandRoad(b.cx, b.cz, clearance)) return;
+
     const h = clamp(b.height, 2, 24);
 
     out.push({

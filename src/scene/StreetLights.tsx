@@ -8,12 +8,12 @@ type Pole = { x: number; z: number; rotY: number };
 
 function collectPoles(): Pole[] {
   const poles: Pole[] = [];
-  const spacing = 12;
-  const offset = 2.5;
+  const spacing = 38;
+  const offset = 3.2;
 
   getLandRoads(2, 0.4).forEach((r) => {
-    if (r.type !== "primary" && r.type !== "trunk" && r.type !== "secondary") return;
-    let acc = 0;
+    if (r.type !== "primary" && r.type !== "trunk") return;
+    let acc = spacing * 0.55;
     for (let i = 1; i < r.points.length; i++) {
       const p0 = r.points[i - 1];
       const p1 = r.points[i];
@@ -31,15 +31,19 @@ function collectPoles(): Pole[] {
         const cx = p0.x + dx * t;
         const cz = p0.z + dz * t;
         const rotY = Math.atan2(ux, uz);
-        poles.push({ x: cx + nx * offset, z: cz + nz * offset, rotY });
-        poles.push({ x: cx - nx * offset, z: cz - nz * offset, rotY: rotY + Math.PI });
+        const side = (Math.floor(acc / spacing) + i) % 2 === 0 ? 1 : -1;
+        poles.push({
+          x: cx + nx * offset * side,
+          z: cz + nz * offset * side,
+          rotY: side > 0 ? rotY : rotY + Math.PI,
+        });
         acc += spacing;
       }
       acc -= segLen;
     }
   });
 
-  return poles.slice(0, 300);
+  return poles.slice(0, 90);
 }
 
 export default function StreetLights({ isNight }: Props) {
