@@ -15,6 +15,7 @@ export default function LandmarkMarker({ spot, height = 5 }: Props) {
   const selectedSpotId = useCityStore((s) => s.selectedSpotId);
   const hoveredSpotId = useCityStore((s) => s.hoveredSpotId);
   const selectedRouteId = useCityStore((s) => s.selectedRouteId);
+  const isDroneFlying = useCityStore((s) => s.isDroneFlying);
   const selectSpot = useCityStore((s) => s.selectSpot);
   const setHoveredSpot = useCityStore((s) => s.setHoveredSpot);
 
@@ -39,13 +40,13 @@ export default function LandmarkMarker({ spot, height = 5 }: Props) {
     const t = state.clock.elapsedTime;
     if (ringRef.current) {
       const pulse = 1 + Math.sin(t * 2.5) * 0.18;
-      const base = isSelected ? 1.4 : isHovered ? 1.2 : 1;
+      const base = isDroneFlying && isSelected ? 2.1 : isSelected ? 1.4 : isHovered ? 1.2 : 1;
       ringRef.current.scale.setScalar(base * pulse);
       (ringRef.current.material as THREE.MeshBasicMaterial).opacity =
         0.4 + Math.sin(t * 2.5) * 0.2;
     }
     if (coreRef.current) {
-      const base = isSelected ? 1.5 : isHovered ? 1.25 : 1;
+      const base = isDroneFlying && isSelected ? 2 : isSelected ? 1.5 : isHovered ? 1.25 : 1;
       coreRef.current.scale.setScalar(base + Math.sin(t * 3) * 0.05);
     }
   });
@@ -101,15 +102,21 @@ export default function LandmarkMarker({ spot, height = 5 }: Props) {
 
       <Html
         center
-        distanceFactor={14}
-        position={[0, 1.2, 0]}
+        distanceFactor={isDroneFlying && isSelected ? 24 : 14}
+        position={[0, isDroneFlying && isSelected ? 1.8 : 1.2, 0]}
         zIndexRange={[20, 0]}
         occlude={false}
       >
         <div
-          className={`landmark-label px-2.5 py-1 rounded-md text-xs font-medium transition-all ${
+          className={`landmark-label transition-all ${
+            isDroneFlying && isSelected
+              ? "rounded-lg px-4 py-1.5 text-base font-semibold"
+              : "rounded-md px-2.5 py-1 text-xs font-medium"
+          } ${
             isSelected
-              ? "bg-sea-300/90 text-sea-900 scale-110"
+              ? isDroneFlying
+                ? "bg-sea-300/95 text-sea-950 scale-125"
+                : "bg-sea-300/90 text-sea-900 scale-110"
               : isHovered
               ? "bg-sea-700/85 text-white scale-105"
               : "bg-sea-900/70 text-sea-100"
