@@ -51,8 +51,8 @@ export default function AboutPage() {
           "radial-gradient(ellipse at 50% 0%, #0a2f54 0%, #06182f 60%, #030a18 100%)",
       }}
     >
-      <div className="mx-auto max-w-3xl px-6 py-12">
-        <div className="mb-8 flex items-center justify-between">
+      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+        <div className="mb-8 flex items-center justify-between gap-3">
           <button
             onClick={() => navigate("/")}
             className="glass-btn rounded-lg px-3 py-1.5 text-xs text-sea-100"
@@ -67,14 +67,14 @@ export default function AboutPage() {
           </button>
         </div>
 
-        <h1 className="mb-2 text-4xl font-bold text-white">项目说明</h1>
+        <h1 className="mb-2 text-3xl font-bold text-white sm:text-4xl">项目说明</h1>
         <p className="mb-10 text-sm text-sea-200/70">
           日照 3D 城市街区漫游导览系统 · 零素材程序化生成版本
         </p>
 
         <div className="space-y-6">
           {SECTIONS.map((s) => (
-            <div key={s.title} className="glass-panel rounded-2xl p-6">
+            <div key={s.title} className="glass-panel rounded-2xl p-4 sm:p-6">
               <h2 className="mb-3 text-lg font-semibold text-sea-100">
                 {s.title}
               </h2>

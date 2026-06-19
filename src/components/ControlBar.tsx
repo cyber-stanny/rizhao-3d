@@ -43,17 +43,17 @@ export default function ControlBar() {
   const isWalk = viewMode === "walk";
 
   return (
-    <div className="pointer-events-auto absolute bottom-4 left-4 right-4 z-30 sm:left-1/2 sm:right-auto sm:-translate-x-1/2">
-      <div className="glass-panel flex w-full max-w-full items-center gap-1.5 overflow-x-auto rounded-2xl px-2.5 py-2 sm:w-auto sm:overflow-visible">
+    <div className="pointer-events-auto absolute bottom-3 left-3 right-3 z-30 sm:bottom-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2">
+      <div className="glass-panel flex w-full max-w-full items-center gap-1 overflow-x-auto rounded-2xl px-2 py-2 sm:w-auto sm:gap-1.5 sm:overflow-visible sm:px-2.5">
         {isWalk ? (
           <>
-            <span className="min-w-0 flex-1 px-3 text-xs text-sea-200/80 sm:flex-none sm:whitespace-nowrap">
+            <span className="min-w-0 flex-1 px-2 text-xs text-sea-200/80 sm:flex-none sm:whitespace-nowrap sm:px-3">
               WASD 移动 · 拖动视角 · Esc 退出
             </span>
             <div className="mx-1 h-5 w-px bg-sea-300/20" />
             <button
               onClick={exitWalk}
-              className="glass-btn active shrink-0 whitespace-nowrap rounded-lg px-4 py-1.5 text-xs font-medium text-white"
+              className="glass-btn active shrink-0 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-medium text-white sm:px-4"
             >
               退出漫游
             </button>
@@ -80,21 +80,21 @@ export default function ControlBar() {
             {isTourPlaying ? (
               <button
                 onClick={stopTour}
-                className="glass-btn active shrink-0 whitespace-nowrap rounded-lg px-4 py-1.5 text-xs font-medium text-white"
+                className="glass-btn active shrink-0 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-medium text-white sm:px-4"
               >
                 ■ 停止导览
               </button>
             ) : (
               <button
                 onClick={handleAutoTour}
-                className="shrink-0 whitespace-nowrap rounded-lg bg-gradient-to-r from-amber-400/80 to-orange-500/80 px-4 py-1.5 text-xs font-medium text-white transition hover:from-amber-300 hover:to-orange-400"
+                className="shrink-0 whitespace-nowrap rounded-lg bg-gradient-to-r from-amber-400/80 to-orange-500/80 px-3 py-1.5 text-xs font-medium text-white transition hover:from-amber-300 hover:to-orange-400 sm:px-4"
               >
                 ▶ 自动游览
               </button>
             )}
             <button
               onClick={startDrone}
-              className="shrink-0 whitespace-nowrap rounded-lg bg-gradient-to-r from-sky-400/80 to-cyan-500/80 px-4 py-1.5 text-xs font-medium text-white transition hover:from-sky-300 hover:to-cyan-400"
+              className="shrink-0 whitespace-nowrap rounded-lg bg-gradient-to-r from-sky-400/80 to-cyan-500/80 px-3 py-1.5 text-xs font-medium text-white transition hover:from-sky-300 hover:to-cyan-400 sm:px-4"
             >
               🚁 无人机环绕
             </button>
@@ -120,7 +120,7 @@ function CtrlButton({
   return (
     <button
       onClick={onClick}
-      className="glass-btn flex shrink-0 items-center gap-1 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs text-sea-100"
+      className="glass-btn flex shrink-0 items-center gap-1 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-xs text-sea-100 sm:px-3"
     >
       <span className="text-sm leading-none">{icon}</span>
       <span>{label}</span>

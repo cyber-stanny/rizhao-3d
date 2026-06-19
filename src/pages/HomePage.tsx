@@ -25,7 +25,7 @@ export default function HomePage() {
         <div className="absolute right-10 top-10 h-64 w-64 rounded-full bg-amber-400/10 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto flex min-h-full max-w-5xl flex-col items-center justify-center px-6 py-16">
+      <div className="relative mx-auto flex min-h-full max-w-5xl flex-col items-center justify-center px-4 py-12 sm:px-6 sm:py-16">
         <div className="mb-6 flex flex-wrap items-center justify-center gap-2">
           {TAGS.map((t) => (
             <span
@@ -37,21 +37,21 @@ export default function HomePage() {
           ))}
         </div>
 
-        <h1 className="mb-4 text-center text-5xl font-bold leading-tight text-white md:text-6xl">
+        <h1 className="mb-4 text-center text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
           日照 3D 城市街区漫游
         </h1>
-        <p className="mb-3 text-center text-lg text-sea-200/90 md:text-xl">
+        <p className="mb-3 text-center text-base text-sea-200/90 sm:text-lg md:text-xl">
           沉浸式探索阳光海岸城市
         </p>
-        <p className="mb-10 max-w-2xl text-center text-sm leading-relaxed text-sea-200/70">
+        <p className="mb-8 max-w-2xl text-center text-sm leading-relaxed text-sea-200/70 sm:mb-10">
           进入一个由代码生成的日照海滨城市，在 3D 街区中浏览海岸线、建筑群、道路和城市地标，
           体验可点击、可漫游、可自动导览的城市数字名片。
         </p>
 
-        <div className="mb-12 flex flex-col gap-3 sm:flex-row">
+        <div className="mb-10 flex w-full max-w-xs flex-col gap-3 sm:mb-12 sm:w-auto sm:max-w-none sm:flex-row">
           <button
             onClick={() => navigate("/city")}
-            className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-sea-300 to-sea-500 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-sea-500/30 transition hover:from-sea-200 hover:to-sea-400 hover:shadow-sea-400/50"
+            className="group flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sea-300 to-sea-500 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-sea-500/30 transition hover:from-sea-200 hover:to-sea-400 hover:shadow-sea-400/50"
           >
             <span>开始探索</span>
             <span className="transition group-hover:translate-x-1">→</span>

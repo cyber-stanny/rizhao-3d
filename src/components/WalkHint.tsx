@@ -5,7 +5,7 @@ export default function WalkHint() {
   if (viewMode !== "walk") return null;
 
   return (
-    <div className="pointer-events-none absolute left-4 right-4 top-28 z-20 animate-fadeUp sm:left-auto sm:top-24 sm:w-80">
+    <div className="pointer-events-none absolute left-4 right-4 top-28 z-20 hidden animate-fadeUp sm:left-auto sm:top-24 sm:block sm:w-80">
       <div className="glass-panel rounded-xl px-4 py-3">
         <div className="mb-1 flex items-center gap-2">
           <span className="text-base leading-none">🚶</span>

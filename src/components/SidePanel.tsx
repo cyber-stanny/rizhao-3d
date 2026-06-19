@@ -25,7 +25,7 @@ export default function SidePanel() {
   if (viewMode === "walk") return null;
 
   return (
-    <div className="pointer-events-auto absolute left-4 top-20 z-20 flex max-h-[calc(100vh-180px)] w-60 flex-col gap-3">
+    <div className="pointer-events-auto absolute left-4 top-20 z-20 hidden max-h-[calc(100vh-180px)] w-60 flex-col gap-3 md:flex">
       <div className="glass-panel flex max-h-[55%] flex-col rounded-2xl p-3">
         <div className="mb-2 flex items-center justify-between">
           <h2 className="text-sm font-semibold text-white">城市景点</h2>

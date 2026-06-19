@@ -18,13 +18,13 @@ export default function SpotInfoPanel() {
   };
 
   return (
-    <div className="pointer-events-auto absolute right-4 top-20 z-20 w-72 animate-fadeUp">
+    <div className="pointer-events-auto absolute bottom-20 left-3 right-3 z-20 animate-fadeUp sm:bottom-auto sm:left-auto sm:right-4 sm:top-20 sm:w-72">
       <div className="glass-panel overflow-hidden rounded-2xl">
-        <div className="relative h-20 bg-gradient-to-br from-sea-400/70 via-sea-600/60 to-sea-900/70">
+        <div className="relative h-16 bg-gradient-to-br from-sea-400/70 via-sea-600/60 to-sea-900/70 sm:h-20">
           <div className="absolute inset-0 flex items-end justify-between px-4 pb-2">
             <div>
               <div className="text-[10px] text-sea-100/80">{spot.type}</div>
-              <h3 className="text-lg font-bold text-white drop-shadow">
+              <h3 className="text-base font-bold text-white drop-shadow sm:text-lg">
                 {spot.name}
               </h3>
             </div>
@@ -37,8 +37,8 @@ export default function SpotInfoPanel() {
           </div>
         </div>
 
-        <div className="p-4">
-          <p className="mb-3 text-xs leading-relaxed text-sea-100/90">
+        <div className="p-3 sm:p-4">
+          <p className="mb-3 line-clamp-3 text-xs leading-relaxed text-sea-100/90 sm:line-clamp-none">
             {spot.description}
           </p>
 
